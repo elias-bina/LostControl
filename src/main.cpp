@@ -84,6 +84,8 @@ int main()
 
 
     }
+
+    delete (&renderTexture);
       
    
     return 0;

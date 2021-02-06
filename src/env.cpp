@@ -21,3 +21,9 @@ void Environnement::update_env(sf::Time& elapsed){
     for_each(_entities.begin(), _entities.end(), [&elapsed](Entity* e){e->update(elapsed);});
     _world->Step(1.f / 6.f, 8, 3);
 }
+
+
+Environnement::~Environnement(){
+    delete _world;
+    for_each(_entities.begin(), _entities.end(),[](Entity*e){delete e;});
+}

@@ -32,7 +32,9 @@ Player::Player(b2World* world, int inputNumber) : Entity(world, Player::getBodyD
 
 Player::~Player()
 {
-
+    delete _sprite->getTexture();
+    delete _sprite;
+    delete _controller;
 }
 
 void Player::update(sf::Time elapsed){
