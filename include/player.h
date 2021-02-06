@@ -9,13 +9,16 @@
 
 class Player: public Entity{
 public:
-    Player(int inputNumber);
+    Player(b2World* world, int inputNumber);
     ~Player();
 
     void update(sf::Time elapsed);
 
 private:
     Input* _controller;
+    static b2BodyDef* bodyDef;
+
+    static const b2BodyDef* getBodyDef();
     /* data */
 };
 

@@ -16,6 +16,7 @@ class Environnement{
         void update_env(sf::Time& elapsed);
         void add_entity(Entity* entity);
     private:
+        b2World * _world;
         std::vector<Entity*> _entities;
 
 };

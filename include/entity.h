@@ -3,26 +3,23 @@
 #define _ENTITIES_H_
 
 #include <iostream>
+#include <box2d/box2d.h>
 #include <SFML/Graphics.hpp>
 
 
 class Entity{
     
     public:
-        Entity(sf::Vector2f size, sf::Sprite* sprite);
+        Entity(b2World* world, const b2BodyDef* bodyDef, sf::Sprite* sprite);
+
+        virtual const sf::Vector2f& getPosition() const;
+
         virtual void draw(sf::RenderTexture& texture) const;
         virtual void update(sf::Time elapsed) = 0;
 
+    protected:
         sf::Sprite *_sprite;
-        sf::Vector2f _pos;
-
-    private:
-
-        sf::Vector2f _speed;
-        sf::Vector2f _size_init;
-        sf::Vector2f _size;
-
-
+        b2Body* _body;
 };
 
 

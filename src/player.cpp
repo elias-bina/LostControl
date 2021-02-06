@@ -1,8 +1,19 @@
 
 #include "player.h"
 
+b2BodyDef * Player::bodyDef = nullptr;
+    
+const b2BodyDef* Player::getBodyDef()
+{
+    if (!bodyDef) {
+        bodyDef = new b2BodyDef();
+        bodyDef->type = b2_dynamicBody;
+    }
+    return bodyDef;
+}
 
-Player::Player(int inputNumber) : Entity(sf::Vector2f(100, 100), nullptr){
+
+Player::Player(b2World* world, int inputNumber) : Entity(world, Player::getBodyDef(), nullptr){
     sf::Sprite* sprite = new sf::Sprite();
     sf::Texture* texture = new sf::Texture();
     if (!texture->loadFromFile("../mouton.png"))
@@ -25,6 +36,13 @@ Player::~Player()
 }
 
 void Player::update(sf::Time elapsed){
-    _pos.x += (_controller->getRight() - _controller->getLeft() )*0.001*elapsed.asMicroseconds();
-    _pos.y += (sf::Keyboard::isKeyPressed(sf::Keyboard::S) - sf::Keyboard::isKeyPressed(sf::Keyboard::Z) )*0.001*elapsed.asMicroseconds();
+    const float absV = 1.2f;
+    b2Vec2 v = b2Vec2((_controller->getRight() - _controller->getLeft() ),  (_controller->getAction() - sf::Keyboard::isKeyPressed(sf::Keyboard::Z) ));
+    const float mag = sqrt(v.x * v.x + v.y * v.y);
+    if (mag) {
+        v.x *= absV / mag;
+        v.y *= absV / mag;
+    }
+
+   _body->SetLinearVelocity(v);
 }
