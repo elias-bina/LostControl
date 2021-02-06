@@ -22,7 +22,8 @@ include_directories(include)
 set(SRCS
     src/main.cpp
     src/entity.cpp
-    src/env.cpp)
+    src/env.cpp
+    src/player.cpp)
 
 
 

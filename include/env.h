@@ -7,11 +7,13 @@
 #include <vector>
 
 #include "entity.h"
+#include "player.h"
 
 class Environnement{
     public:
         Environnement();
-
+        void draw_env(sf::RenderTexture& texture);
+        void update_env(sf::Time elapsed);
     private:
         std::vector<Entity*> _entities;
 

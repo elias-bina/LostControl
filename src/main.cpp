@@ -17,6 +17,8 @@ int main()
 
     const sf::Texture& texture_aff = renderTexture.getTexture();
     sf::Sprite sprite_fenetre(texture_aff);
+
+    Environnement env;
     
     sf::CircleShape shape(100.f,100);
     shape.setFillColor(sf::Color::Green);
@@ -32,6 +34,9 @@ int main()
 
         renderTexture.clear(sf::Color::Cyan);
         renderTexture.draw(shape);
+
+        env.draw_env(renderTexture);
+
         renderTexture.display();
 
         window.draw(sprite_fenetre);
