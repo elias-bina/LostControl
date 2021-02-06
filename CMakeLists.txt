@@ -21,7 +21,8 @@ include_directories(include)
 # Crée des variables avec les fichiers à compiler
 set(SRCS
     src/main.cpp
-    src/entity.cpp)
+    src/entity.cpp
+    src/env.cpp)
 
 
 
