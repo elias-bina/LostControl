@@ -20,7 +20,9 @@ set(SRCS
     src/main.cpp
     src/entity.cpp
     src/env.cpp
-    src/player.cpp)
+    src/player.cpp
+    src/input.cpp
+    src/keyboard_input.cpp)
 
 
 

@@ -3,7 +3,7 @@
 
 Environnement::Environnement(): _entities(){
 
-    Entity* p1 = new Player();
+    Entity* p1 = new Player(1);
     _entities.push_back(p1);
 }
 
