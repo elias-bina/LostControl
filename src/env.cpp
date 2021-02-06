@@ -1,28 +1,6 @@
 
 #include "env.h"
 
-class DrawF{
-    public:
-        DrawF(sf::RenderTexture& tex): _tex(tex){};
-
-        void operator()(const Entity* e){
-            e->draw(_tex);
-        }
-
-        sf::RenderTexture& _tex;
-};
-
-class UpdateF{
-    public:
-        UpdateF(sf::Time elapsed): _elapsed(elapsed){};
-
-        void operator()(Entity* e){
-            e->update(_elapsed);
-        }
-
-        sf::Time _elapsed;
-};
-
 Environnement::Environnement(): _entities(){
 
     Entity* p1 = new Player();
@@ -30,9 +8,9 @@ Environnement::Environnement(): _entities(){
 }
 
 void Environnement::draw_env(sf::RenderTexture& texture){
-    for_each(_entities.begin(), _entities.end(), DrawF(texture)); 
+    for_each(_entities.begin(), _entities.end(), [&texture](const Entity* e){e->draw(texture);}); 
 }
 
-void Environnement::update_env(sf::Time elapsed){
-    for_each(_entities.begin(), _entities.end(), UpdateF(elapsed)); 
+void Environnement::update_env(sf::Time& elapsed){
+    for_each(_entities.begin(), _entities.end(), [&elapsed](Entity* e){e->update(elapsed);}); 
 }

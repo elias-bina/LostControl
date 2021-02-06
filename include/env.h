@@ -13,7 +13,7 @@ class Environnement{
     public:
         Environnement();
         void draw_env(sf::RenderTexture& texture);
-        void update_env(sf::Time elapsed);
+        void update_env(sf::Time& elapsed);
     private:
         std::vector<Entity*> _entities;
 
