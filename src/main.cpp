@@ -28,6 +28,16 @@ int main()
     {
         sf::Time elapsed = clock.restart();
 
+        window.clear();
+
+        renderTexture.clear(sf::Color::Cyan);
+        renderTexture.draw(shape);
+        renderTexture.display();
+
+        window.draw(sprite_fenetre);
+
+        window.display();
+
         sf::Event event;
 
         while (window.pollEvent(event))
@@ -62,18 +72,10 @@ int main()
                 std::cout << "joystick disconnected: " << event.joystickConnect.joystickId << std::endl;
         }
 
-        window.clear();
-
-        renderTexture.clear(sf::Color::Cyan);
-        renderTexture.draw(shape);
-        renderTexture.display();
+        // Gestion affichage
         
-        shape.move(sf::Vector2f(0.0005 * elapsed.asMicroseconds(), 0.0003 * elapsed.asMicroseconds()));
+        shape.move(sf::Vector2f(0.00005 * elapsed.asMicroseconds(), 0.00003 * elapsed.asMicroseconds()));
 
-
-        window.draw(sprite_fenetre);
-
-        window.display();
 
     }
       
