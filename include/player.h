@@ -7,12 +7,15 @@
 
 class Player: public Entity{
 public:
-    Player(/* args */);
+    Player(b2World* world);
     ~Player();
 
     void update(sf::Time elapsed);
 
 private:
+    static b2BodyDef* bodyDef;
+
+    static const b2BodyDef* getBodyDef();
     /* data */
 };
 

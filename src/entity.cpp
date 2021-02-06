@@ -1,15 +1,22 @@
 #include "entity.h"
 
 
-
-Entity::Entity(sf::Vector2f size, sf::Sprite* sprite): _speed(), _pos(), _size_init(size), _size(size){
+Entity::Entity(b2World* world, const b2BodyDef* bodyDef, sf::Sprite* sprite) {
     _sprite = sprite;
+    _body = world->CreateBody(bodyDef);
 }
 
-void Entity::draw(sf::RenderTexture& texture) const{
-    _sprite->move(_pos - _sprite->getPosition());
-    sf::FloatRect rect = _sprite->getLocalBounds();
-    _sprite->setScale(_size.x/rect.width, _size.y/rect.height);
-    texture.draw(*_sprite);
+const sf::Vector2f& Entity::getPosition() const {
+    static sf::Vector2f v;
+    v.x = _body->GetPosition().x;
+    v.y = _body->GetPosition().y;
+    std::cout << "Pos : " << _body->GetPosition().x << ";" << _body->GetPosition().y << std::endl;
 
+    return v;
+}
+
+
+void Entity::draw(sf::RenderTexture& texture) const {
+    _sprite->setPosition(getPosition());
+    texture.draw(*_sprite);
 }
