@@ -7,6 +7,10 @@ Environnement::Environnement(): _entities(){
     _entities.push_back(p1);
 }
 
+void Environnement::add_entity(Entity* entity){
+    _entities.push_back(entity);
+}
+
 void Environnement::draw_env(sf::RenderTexture& texture){
     for_each(_entities.begin(), _entities.end(), [&texture](const Entity* e){e->draw(texture);}); 
 }

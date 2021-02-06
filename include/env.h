@@ -14,6 +14,7 @@ class Environnement{
         Environnement();
         void draw_env(sf::RenderTexture& texture);
         void update_env(sf::Time& elapsed);
+        void add_entity(Entity* entity);
     private:
         std::vector<Entity*> _entities;
 
