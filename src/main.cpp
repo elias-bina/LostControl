@@ -79,6 +79,7 @@ int main()
 
         // Gestion affichage
         
+        env.update_env(elapsed);
         shape.move(sf::Vector2f(0.00005 * elapsed.asMicroseconds(), 0.00003 * elapsed.asMicroseconds()));
 
 

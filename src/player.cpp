@@ -27,5 +27,6 @@ Player::~Player()
 }
 
 void Player::update(sf::Time elapsed){
-    return;
+    _pos.x += (sf::Keyboard::isKeyPressed(sf::Keyboard::D) - sf::Keyboard::isKeyPressed(sf::Keyboard::Q) )*0.001*elapsed.asMicroseconds();
+    _pos.y += (sf::Keyboard::isKeyPressed(sf::Keyboard::S) - sf::Keyboard::isKeyPressed(sf::Keyboard::Z) )*0.001*elapsed.asMicroseconds();
 }

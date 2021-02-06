@@ -10,7 +10,7 @@ class Shape : public Entity {
 
     public:
         Shape(sf::Vector2f size, sf::ConvexShape convex);
-        void update(sf::Time elapsed, Dir d);
+
 
     private:
         sf::ConvexShape _convex;

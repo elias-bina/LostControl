@@ -7,10 +7,7 @@ cmake_minimum_required(VERSION 3.0)
 # Notre projet est étiqueté test
 project(gameTest1)
 
-
-
 SET(CFLAGS "-Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wpointer-arith -Wfloat-equal")
-SET(LFLAGS "-lsfml-graphics -lsfml-window -lsfml-system")
 SET(CFLAGS_OPTI "-Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wpointer-arith -Wfloat-equal -Os -s -O2")
 
 SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${CFLAGS}")
@@ -30,3 +27,11 @@ set(SRCS
 set(TARGET main)
 # On indique que l'on veut un exécutable "main" compilé à partir des fichiers décrits par les variables SRCS et HEADERS
 add_executable(${TARGET} ${SRCS})
+
+
+# Ajoute BOX2d
+find_package(box2d REQUIRED)
+target_link_libraries(${TARGET} box2d)
+
+# Ajoute SFML
+target_link_libraries(${TARGET} sfml-graphics sfml-window sfml-system)
