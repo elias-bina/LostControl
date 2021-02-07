@@ -14,12 +14,14 @@ class Environnement{
     public:
         Environnement();
         ~Environnement();
-        void draw_env(sf::RenderTexture& texture);
+        void draw_env(sf::RenderTexture& texture, sf::RenderWindow& window);
         void update_env(sf::Time& elapsed);
         void add_entity(Entity* entity);
+        b2World* getWorld();
     private:
         b2World * _world;
         std::vector<Entity*> _entities;
+
 
 };
 

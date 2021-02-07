@@ -2,7 +2,7 @@
 #include "main.h"
 
 #include "rail.h"
-
+#include "reader.h"
 
 int main()
 {
@@ -21,11 +21,16 @@ int main()
     sf::Sprite sprite_fenetre(texture_aff);
 
     Environnement env;
-    
+
+    Reader* r = new Reader();
+    r->construct_and_add_shape(& env, "../test.txt");
+
     sf::CircleShape shape(100.f,100);
-    shape.setFillColor(sf::Color::Green);
-
-
+    sf::RectangleShape rect(sf::Vector2f(100,100));
+    sf::ConvexShape conv(100);
+    rect.setFillColor(sf::Color::Red);
+    rect.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+    rect.setOrigin(rect.getSize().x / 2,  rect.getSize().y / 2);
     sf::Clock clock;
 
     while (window.isOpen())
@@ -37,15 +42,25 @@ int main()
         renderTexture.clear(sf::Color::Cyan);
         renderTexture.draw(shape);
 
-        env.draw_env(renderTexture);
-
+        env.draw_env(renderTexture, window);
         renderTexture.display();
 
         window.draw(sprite_fenetre);
+        window.draw(rect);
+
+
+        for (sf::ConvexShape* l : r->getShapes()) {
+            int a = (*l).getPoint(1).x;
+            l->setFillColor(sf::Color::Red);
+            sf::Texture* texture = new sf::Texture();
+            texture->loadFromFile("../grass.png");
+            l->setTexture(texture);
+            window.draw(*l);
+        }
 
         window.display();
-
         sf::Event event;
+
 
         while (window.pollEvent(event))
         {
@@ -82,6 +97,8 @@ int main()
         // Gestion affichage
         
         env.update_env(elapsed);
+        shape.move(sf::Vector2f(0.0005 * elapsed.asMicroseconds(), 0.0003 * elapsed.asMicroseconds()));
+        rect.rotate(0.0001 * elapsed.asMicroseconds());
         shape.move(sf::Vector2f(0.00005 * elapsed.asMicroseconds(), 0.00003 * elapsed.asMicroseconds()));
 
 

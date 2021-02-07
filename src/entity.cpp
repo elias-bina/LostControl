@@ -16,15 +16,8 @@ const sf::Vector2f& Entity::getPosition() const {
 }
 
 
-void Entity::draw(sf::RenderTexture& texture) const {
+void Entity::draw(sf::RenderTexture& texture, sf::RenderWindow& window) const {
     _sprite->setPosition(getPosition());
     texture.draw(*_sprite);
 }
 
-sf::Vector2f Entity::getSpeed() {
-    return _speed;
-}
-
-void Entity::setSpeed(sf::Vector2f speed) {
-    _speed = speed;
-}

@@ -22,7 +22,9 @@ set(SRCS
     src/env.cpp
     src/player.cpp
     src/input.cpp
-    src/keyboard_input.cpp)
+    src/keyboard_input.cpp
+        src/shape.cpp
+        src/reader.cpp)
 
 
 

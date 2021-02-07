@@ -14,7 +14,7 @@ class Entity{
 
         virtual const sf::Vector2f& getPosition() const;
 
-        virtual void draw(sf::RenderTexture& texture) const;
+        virtual void draw(sf::RenderTexture& , sf::RenderWindow&) const;
         virtual void update(sf::Time elapsed) = 0;
         sf::Vector2f getSpeed();
         void setSpeed(sf::Vector2f);
