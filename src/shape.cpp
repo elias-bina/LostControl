@@ -1,20 +1,13 @@
 #include "shape.h"
 #include "entity.h"
+#include "utils.h"
 
 
-b2BodyDef * Shape::bodyDef = nullptr;
 
-const b2BodyDef* Shape::getBodyDef()
-{
-    if (!bodyDef) {
-        bodyDef = new b2BodyDef();
-        bodyDef->type = b2_dynamicBody;
-    }
-    return bodyDef;
-}
+Shape::Shape(b2World * world, sf::ConvexShape* convex) : Shape(world, getDefaultDynamicBodyDef(), convex) {}
 
 
-Shape::Shape(sf::ConvexShape* convex, b2World* world) : Entity(world, Shape::getBodyDef(), nullptr) {
+Shape::Shape(b2World * world, const b2BodyDef* bodyDef, sf::ConvexShape* convex) : Entity(world, bodyDef, nullptr) {
     _convex = convex;
 }
 

@@ -1,5 +1,6 @@
 
 #include "player.h"
+#include "utils.h"
 
 b2BodyDef * Player::bodyDef = nullptr;
     
@@ -22,6 +23,18 @@ Player::Player(b2World* world, int inputNumber) : Entity(world, Player::getBodyD
     }
     sprite->setTexture(*texture);
 
+    b2PolygonShape shape;
+    shape.SetAsBox(1, 1);
+    b2FixtureDef fix;
+    fix.shape = &shape;
+    fix.density = 1;
+    fix.friction = 0.3;
+
+    _body->CreateFixture(&fix);
+        
+    
+    
+    
     if(_sprite != NULL){
         delete _sprite;
     }
@@ -38,13 +51,13 @@ Player::~Player()
 }
 
 void Player::update(sf::Time elapsed){
-    const float absV = 1.2f;
-    b2Vec2 v = b2Vec2((_controller->getRight() - _controller->getLeft() ),  (_controller->getAction() - sf::Keyboard::isKeyPressed(sf::Keyboard::Z) ));
-    const float mag = sqrt(v.x * v.x + v.y * v.y);
-    if (mag) {
-        v.x *= absV / mag;
-        v.y *= absV / mag;
+    b2Vec2 v = b2Vec2((_controller->getRight() - _controller->getLeft() ) * 20, 0);
+    if (_controller->getAction()) {
+        if (_body->GetContactList() != nullptr)
+        {
+            v.y = 100;
+            std::cout << "Jumped !" << std::endl;
+        }
     }
-
-   _body->SetLinearVelocity(v);
+   _body->ApplyForceToCenter(v, true);
 }

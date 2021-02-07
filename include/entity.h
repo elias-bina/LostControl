@@ -12,12 +12,10 @@ class Entity{
     public:
         Entity(b2World* world, const b2BodyDef* bodyDef, sf::Sprite* sprite);
 
-        virtual const sf::Vector2f& getPosition() const;
-
         virtual void draw(sf::RenderTexture& , sf::RenderWindow&) const;
         virtual void update(sf::Time elapsed) = 0;
-        sf::Vector2f getSpeed();
-        void setSpeed(sf::Vector2f);
+
+        virtual ~Entity(){};
 
     protected:
         sf::Sprite *_sprite;

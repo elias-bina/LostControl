@@ -9,12 +9,15 @@ int main()
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
+    window.setFramerateLimit(60);
+
     // Peut-être en faire plusieurs pour faire Zbuffer
     sf::RenderTexture renderTexture;
     
     if (!renderTexture.create(800, 600))
     {
         // erreur...
+        exit(-1);
     }
 
     const sf::Texture& texture_aff = renderTexture.getTexture();

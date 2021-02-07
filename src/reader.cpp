@@ -26,7 +26,7 @@ void Reader::construct_and_add_shape(Environnement* env, std::string file) {
             forme->setPoint(i, sf::Vector2f(a, b));
         }
         _shapes.push_back(forme);
-        Shape *ent = new Shape(forme, env->getWorld());
+        Shape *ent = new Shape(env->getWorld(), forme);
         env->add_entity(ent);
     }
     fs.close();

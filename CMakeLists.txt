@@ -16,15 +16,7 @@ SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${LFLAGS}")
 include_directories(include)
 
 # Crée des variables avec les fichiers à compiler
-set(SRCS
-    src/main.cpp
-    src/entity.cpp
-    src/env.cpp
-    src/player.cpp
-    src/input.cpp
-    src/keyboard_input.cpp
-        src/shape.cpp
-        src/reader.cpp)
+AUX_SOURCE_DIRECTORY(src SRCS)
 
 
 

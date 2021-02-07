@@ -1,29 +1,44 @@
 #include "rail.h"
 #include "shape.h"
+#include "utils.h"
 
+Rail::Rail(b2World * world, sf::ConvexShape* convex, Dir d) : Shape(world, getDefaultDynamicBodyDef(), convex) {
+    
+    std::vector<b2Vec2> points; 
+    for (size_t i = 0; i < convex->getPointCount(); i++)
+        points.push_back(sfToBoxVec(convex->getPoint(i)));
 
-Rail::Rail(sf::Vector2f size, sf::ConvexShape convex, Dir d) : Shape(size, convex) {
-    //_p1 = p1;
-    //_p2 = p2;
+    b2PolygonShape shape;
+    shape.Set(points.data(), points.size());
+    b2FixtureDef fix;
+    fix.shape = &shape;
+    fix.density = 1;
+    fix.friction = 0.3;
+
+    b2Vec2 vec;
+
     if (d == Up)
     {
-        this->setSpeed(sf::Vector2f(0, 5));
+        vec.y = 5;
+    }
+    else if (d == Down)
+    {
+        vec.y = -5;
     }
 
-    if (d == Down)
-    {
-        this->setSpeed(sf::Vector2f(0, -5));
-    }
     if (d == Right)
     {
-        this->setSpeed(sf::Vector2f(-5, 0));
+        vec.x = -5;
     }
-    if (d == Left)
+    else if (d == Left)
     {
-        this->setSpeed(sf::Vector2f(5, 0));
+        vec.x = 5;
     }
+     _body->SetLinearVelocity(vec);
+    
 
     _d = d;
+    _body->CreateFixture(&fix);
 }
 
 
@@ -31,10 +46,6 @@ void Rail::update(sf::Time elapsed, Dir d)
 {
     float moveX = 0.0;
     float moveY = 0.0;
-    if (d == _d)
-    {
-        this->getConvex().move(this->getSpeed().x, this->getSpeed().y);
-    }
 }
 
 

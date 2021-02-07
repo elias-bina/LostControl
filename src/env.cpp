@@ -1,5 +1,6 @@
 
 #include "env.h"
+#include "utils.h"
 
 Environnement::Environnement(): _entities(){
     _world = new b2World(b2Vec2(0, -9.81));
@@ -7,6 +8,13 @@ Environnement::Environnement(): _entities(){
     Entity* p2 = new Player(_world, 1);
     _entities.push_back(p1);
     _entities.push_back(p2);
+
+    b2BodyDef ground;
+    ground.position.Set(400 * METERS_PER_PIXELS, -800 * METERS_PER_PIXELS);
+    b2Body * groundBody = _world->CreateBody(&ground);
+    b2PolygonShape groundBox;
+    groundBox.SetAsBox(800 / 2 * METERS_PER_PIXELS, 1 * METERS_PER_PIXELS);
+    groundBody->CreateFixture(&groundBox, 0.0f);
 }
 
 void Environnement::add_entity(Entity* entity){
@@ -19,7 +27,7 @@ void Environnement::draw_env(sf::RenderTexture& texture, sf::RenderWindow& windo
 
 void Environnement::update_env(sf::Time& elapsed){
     for_each(_entities.begin(), _entities.end(), [&elapsed](Entity* e){e->update(elapsed);});
-    _world->Step(1.f / 6.f, 8, 3);
+    _world->Step(1.f / 60.f, 8, 3);
 }
 
 b2World* Environnement::getWorld() {
