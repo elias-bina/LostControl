@@ -8,6 +8,7 @@
 
 #include "entity.h"
 #include "player.h"
+#include "rail.h"
 
 class Environnement{
     public:

@@ -16,6 +16,8 @@ class Entity{
 
         virtual void draw(sf::RenderTexture& texture) const;
         virtual void update(sf::Time elapsed) = 0;
+        sf::Vector2f getSpeed();
+        void setSpeed(sf::Vector2f);
 
     protected:
         sf::Sprite *_sprite;

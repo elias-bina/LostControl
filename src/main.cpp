@@ -1,6 +1,8 @@
 
 #include "main.h"
 
+#include "rail.h"
+
 
 int main()
 {
@@ -87,4 +89,28 @@ int main()
       
    
     return 0;
+}
+
+void gestion_clavier()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+
+    }
+
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+
+    }
+
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+
+    }
+
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+
+    }
+
 }

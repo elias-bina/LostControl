@@ -7,6 +7,7 @@ Environnement::Environnement(): _entities(){
     Entity* p2 = new Player(_world, 1);
     _entities.push_back(p1);
     _entities.push_back(p2);
+    Entity* p3 = new Rail();
 }
 
 void Environnement::add_entity(Entity* entity){

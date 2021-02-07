@@ -8,12 +8,12 @@
 
 class Shape : public Entity {
 
-    public:
-        Shape(sf::Vector2f size, sf::ConvexShape convex);
+public:
+    Shape(sf::Vector2f size, sf::ConvexShape convex);
+    sf::ConvexShape getConvex();
 
-
-    private:
-        sf::ConvexShape _convex;
+private:
+    sf::ConvexShape _convex;
 };
 
 

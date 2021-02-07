@@ -16,7 +16,7 @@ const b2BodyDef* Player::getBodyDef()
 Player::Player(b2World* world, int inputNumber) : Entity(world, Player::getBodyDef(), nullptr){
     sf::Sprite* sprite = new sf::Sprite();
     sf::Texture* texture = new sf::Texture();
-    if (!texture->loadFromFile("../mouton.png"))
+    if (!texture->loadFromFile("mouton.png"))
     {
         std::cout << "Ono" << std::endl;
     }
