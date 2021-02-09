@@ -1,4 +1,53 @@
 #include "utils.h"
+#include <iostream>
+
+std::string Path::subDirs[] = {
+    "config", "images", "levels", "sounds"
+};
+
+
+std::string Path::rootDir = ".";
+
+void Path::configure(const std::string& self)
+{
+    std::string binaryDir;
+    Path::dirname(self, binaryDir);
+    rootDir = binaryDir + getDelimiter() + "..";
+}
+
+char Path::getDelimiter()
+{
+    return 
+    #ifdef _WIN32 
+        '\\'
+    #else 
+        '/' 
+    #endif
+    ;
+}
+
+void Path::dirname(const std::string& path, std::string& dest)
+{
+    int index = path.find_last_of(Path::getDelimiter());
+    if (index == -1)
+        dest.assign(path);
+    else if (index == path.size() - 1) // Skip trailing slashes
+        index = path.substr(0, -1).find_last_of(Path::getDelimiter());
+
+    dest.assign(path.substr(0, index));
+}
+
+const std::string& Path::getRootDir()
+{
+    return rootDir;
+}
+
+const std::string& Path::getResource(const std::string& resName, ResourceType resType)
+{  
+    static std::string res;
+    res.assign(getRootDir() + "/" + subDirs[resType] + "/" + resName);
+    return res;
+}
 
 
 const b2BodyDef* getDefaultDynamicBodyDef()

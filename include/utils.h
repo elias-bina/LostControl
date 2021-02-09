@@ -4,7 +4,7 @@
     #include "SFML/Graphics.hpp"
     #include "box2d/box2d.h"
 
-    #define METERS_PER_PIXELS 0.004f
+    #define METERS_PER_PIXELS 0.005f
 
 
     const b2BodyDef* getDefaultDynamicBodyDef();
@@ -23,6 +23,21 @@
         public:
             using sf::Vector2f::x;
             using sf::Vector2f::y;
+    };
+
+    typedef enum {CONFIG, IMAGE, LEVEL, SOUND} ResourceType;
+    class Path {
+        public:
+            static char getDelimiter();
+            static void dirname(const std::string& path, std::string& dest);
+
+            static const std::string& getRootDir();
+            static void configure(const std::string& self);
+
+            static const std::string& getResource(const std::string& resName, ResourceType resType);
+        protected:
+            static std::string subDirs[];
+            static std::string rootDir;
     };
 
 #endif
