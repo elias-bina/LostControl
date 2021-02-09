@@ -17,14 +17,18 @@ const b2BodyDef* Player::getBodyDef()
 Player::Player(b2World* world, int inputNumber) : Entity(world, Player::getBodyDef(), nullptr){
     sf::Sprite* sprite = new sf::Sprite();
     sf::Texture* texture = new sf::Texture();
-    if (!texture->loadFromFile("mouton.png"))
+    if (!texture->loadFromFile(Path::getResource("mouton.png", ResourceType::IMAGE)))
     {
         std::cout << "Ono" << std::endl;
     }
     sprite->setTexture(*texture);
 
     b2PolygonShape shape;
-    shape.SetAsBox(1, 1);
+    // On définit la bonne taille de notre personnage
+    // On divise par deux car SetAsBox prend un "rayon"
+    shape.SetAsBox(texture->getSize().x * METERS_PER_PIXELS / 2, texture->getSize().y * METERS_PER_PIXELS / 2);
+   std::cout << "Player size " << texture->getSize().x * METERS_PER_PIXELS << "x" << texture->getSize().y * METERS_PER_PIXELS <<std::endl;
+   
     b2FixtureDef fix;
     fix.shape = &shape;
     fix.density = 1;
@@ -32,30 +36,23 @@ Player::Player(b2World* world, int inputNumber) : Entity(world, Player::getBodyD
 
     _body->CreateFixture(&fix);
         
-    
-    
-    
-    if(_sprite != NULL){
-        delete _sprite;
-    }
-
     _sprite = sprite;
     _controller = new KeyboardInput(inputNumber);
 }
 
 Player::~Player()
 {
-    delete _sprite->getTexture();
+    //delete _sprite->getTexture();
     delete _sprite;
     delete _controller;
 }
 
 void Player::update(sf::Time elapsed){
-    b2Vec2 v = b2Vec2((_controller->getRight() - _controller->getLeft() ) * 20, 0);
+    b2Vec2 v = b2Vec2((_controller->getRight() - _controller->getLeft() ) * 0.25, 0);
     if (_controller->getAction()) {
         if (_body->GetContactList() != nullptr)
         {
-            v.y = 100;
+            v.y = 0.5;
             std::cout << "Jumped !" << std::endl;
         }
     }

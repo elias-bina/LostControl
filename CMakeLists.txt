@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.0)
 # Notre projet est étiqueté test
 project(gameTest1)
 
-SET(CFLAGS "-Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wpointer-arith -Wfloat-equal")
+SET(CFLAGS "-Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wpointer-arith -Wfloat-equal -g")
 SET(CFLAGS_OPTI "-Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wpointer-arith -Wfloat-equal -Os -s -O2")
 
 SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${CFLAGS}")

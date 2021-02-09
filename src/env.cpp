@@ -9,11 +9,14 @@ Environnement::Environnement(): _entities(){
     _entities.push_back(p1);
     _entities.push_back(p2);
 
+    //TODO: bouger ces variables dans un module central 
+    const int SCREEN_W = 800, SCREEN_H = 600, GROUND_W = SCREEN_W * 2, GROUND_H = 10;
+
     b2BodyDef ground;
-    ground.position.Set(400 * METERS_PER_PIXELS, -800 * METERS_PER_PIXELS);
+    ground.position.Set(SCREEN_W / 2 * METERS_PER_PIXELS, (-SCREEN_H + GROUND_H) * METERS_PER_PIXELS);
     b2Body * groundBody = _world->CreateBody(&ground);
     b2PolygonShape groundBox;
-    groundBox.SetAsBox(800 / 2 * METERS_PER_PIXELS, 1 * METERS_PER_PIXELS);
+    groundBox.SetAsBox(GROUND_W / 2 * METERS_PER_PIXELS, GROUND_H / 2 * METERS_PER_PIXELS);
     groundBody->CreateFixture(&groundBox, 0.0f);
 }
 

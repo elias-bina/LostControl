@@ -4,6 +4,3 @@
 
 Input::Input(/* args */){
 }
-
-Input::~Input(){
-}

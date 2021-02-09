@@ -1,10 +1,9 @@
-
-
+#include "utils.h"
 #include "keyboard_input.h"
 
 KeyboardInput::KeyboardInput(int player) : _player(player){
 
-    std::ifstream infile("../bindings.conf");
+    std::ifstream infile(Path::getResource("bindings.conf", ResourceType::CONFIG));
 
     int a, b, c, i=0;
     while (infile >> a >> b >> c)
@@ -13,10 +12,14 @@ KeyboardInput::KeyboardInput(int player) : _player(player){
             _left_bind = (sf::Keyboard::Key)a;
             _right_bind = (sf::Keyboard::Key)b;
             _action_bind = (sf::Keyboard::Key)c;
+            std::cout << "Bindings for player " << i << " : " << a << ", " << b << " and " << c <<std::endl;
             break;
         }
         i++;
     }
+}
+
+KeyboardInput::~KeyboardInput(){
 }
 
 

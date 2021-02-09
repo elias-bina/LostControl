@@ -7,7 +7,7 @@
 class Input{
 public:
     Input(/* args */);
-    ~Input();
+    virtual ~Input(){};
 
     virtual bool getLeft() = 0;
     virtual bool getRight() = 0;
