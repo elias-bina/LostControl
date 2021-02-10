@@ -8,6 +8,7 @@
 
 
     const b2BodyDef* getDefaultDynamicBodyDef();
+    const b2BodyDef* getDefaultStaticBodyDef();
 
     void normalize(b2Vec2& vec, float mag = 1.0f);
     void normalize(sf::Vector2f& vec, float mag = 1.0f);
@@ -15,6 +16,8 @@
 
     const b2Vec2& sfToBoxVec(const sf::Vector2f& vec); 
     const sf::Vector2f& boxToSfVec(const b2Vec2& vec);
+
+    const sf::Vector2f& toFloatVec(const sf::Vector2u& v);
 
     const sf::Vector2f& worldToScreen(const sf::Vector2f& vec);
     const sf::Vector2f& screenToWorld(const sf::Vector2f& vec);

@@ -3,18 +3,6 @@
 #include "utils.h"
 
 Rail::Rail(b2World * world, sf::ConvexShape* convex, Dir d) : Shape(world, getDefaultDynamicBodyDef(), convex) {
-    
-    std::vector<b2Vec2> points; 
-    for (size_t i = 0; i < convex->getPointCount(); i++)
-        points.push_back(sfToBoxVec(convex->getPoint(i)));
-
-    b2PolygonShape shape;
-    shape.Set(points.data(), points.size());
-    b2FixtureDef fix;
-    fix.shape = &shape;
-    fix.density = 1;
-    fix.friction = 0.3;
-
     b2Vec2 vec;
 
     if (d == Up)
@@ -38,7 +26,6 @@ Rail::Rail(b2World * world, sf::ConvexShape* convex, Dir d) : Shape(world, getDe
     
 
     _d = d;
-    _body->CreateFixture(&fix);
 }
 
 

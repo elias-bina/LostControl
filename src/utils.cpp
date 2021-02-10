@@ -57,6 +57,13 @@ const b2BodyDef* getDefaultDynamicBodyDef()
     return &bodyDef;
 }
 
+const b2BodyDef* getDefaultStaticBodyDef()
+{
+    static b2BodyDef bodyDef;
+    bodyDef.type = b2_staticBody;
+    return &bodyDef;
+}
+
 
 void normalize(float& x, float& y, float mag)
 {
@@ -90,6 +97,14 @@ const sf::Vector2f& boxToSfVec(const b2Vec2& vec)
     static sf::Vector2f ret;
     ret.x = vec.x;
     ret.y = vec.y;
+    return ret;
+}
+
+const sf::Vector2f& toFloatVec(const sf::Vector2u& v)
+{
+    static sf::Vector2f ret;
+    ret.x = v.x;
+    ret.y = v.y;
     return ret;
 }
 

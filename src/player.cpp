@@ -26,8 +26,10 @@ Player::Player(b2World* world, int inputNumber) : Entity(world, Player::getBodyD
     b2PolygonShape shape;
     // On définit la bonne taille de notre personnage
     // On divise par deux car SetAsBox prend un "rayon"
-    shape.SetAsBox(texture->getSize().x * METERS_PER_PIXELS / 2, texture->getSize().y * METERS_PER_PIXELS / 2);
-   std::cout << "Player size " << texture->getSize().x * METERS_PER_PIXELS << "x" << texture->getSize().y * METERS_PER_PIXELS <<std::endl;
+    float halfW = texture->getSize().x * METERS_PER_PIXELS / 2, halfH = texture->getSize().y * METERS_PER_PIXELS / 2;
+
+    shape.SetAsBox(halfW, halfH);
+    std::cout << "Player size " << texture->getSize().x * METERS_PER_PIXELS << "x" << texture->getSize().y * METERS_PER_PIXELS <<std::endl;
    
     b2FixtureDef fix;
     fix.shape = &shape;
