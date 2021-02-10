@@ -2,7 +2,7 @@
 #include "shape.h"
 #include "utils.h"
 
-Rail::Rail(b2World * world, sf::ConvexShape* convex, Dir d) : Shape(world, getDefaultDynamicBodyDef(), convex) {
+Rail::Rail(b2World * world, sf::Shape* convex, Dir d) : Shape(world, getDefaultDynamicBodyDef(), convex) {
     b2Vec2 vec;
 
     if (d == Up)

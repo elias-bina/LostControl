@@ -7,8 +7,8 @@
     #define METERS_PER_PIXELS 0.005f
 
 
-    const b2BodyDef* getDefaultDynamicBodyDef();
-    const b2BodyDef* getDefaultStaticBodyDef();
+    b2BodyDef* getDefaultDynamicBodyDef(const sf::Vector2f& pos = sf::Vector2f(0, 0));
+    b2BodyDef* getDefaultStaticBodyDef(const sf::Vector2f& pos = sf::Vector2f(0, 0));
 
     void normalize(b2Vec2& vec, float mag = 1.0f);
     void normalize(sf::Vector2f& vec, float mag = 1.0f);

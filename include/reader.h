@@ -13,9 +13,9 @@ class Reader {
     public:
         Reader();
         void construct_and_add_shape(Environnement* env, std::string file);
-        std::vector<sf::ConvexShape*> getShapes();
+        std::vector<sf::Shape*> getShapes();
 private:
-    std::vector<sf::ConvexShape*> _shapes;
+    std::vector<sf::Shape*> _shapes;
 
 
 };

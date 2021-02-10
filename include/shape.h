@@ -9,15 +9,14 @@
 class Shape : public Entity {
 
     public:
-        Shape(b2World * world, sf::ConvexShape* convex);
+        Shape(b2World * world, sf::Shape* convex, const sf::Vector2f& position = sf::Vector2f(0, 0));
         ~Shape();
         void update(sf::Time elapsed);
         void draw(sf::RenderTexture& , sf::RenderWindow&) const;
-        sf::ConvexShape* getConvex();
+        sf::Shape* getConvex();
     protected:
-        Shape(b2World * world, const b2BodyDef* bodyDef, sf::ConvexShape* convex);
-        sf::ConvexShape* _convex;
-        static b2BodyDef* bodyDef;
+        Shape(b2World * world, const b2BodyDef* bodyDef, sf::Shape* convex);
+        sf::Shape* _convex;
 
 };
 

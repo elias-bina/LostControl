@@ -50,18 +50,19 @@ const std::string& Path::getResource(const std::string& resName, ResourceType re
 }
 
 
-const b2BodyDef* getDefaultDynamicBodyDef()
+b2BodyDef* getDefaultDynamicBodyDef(const sf::Vector2f& pos)
 {
     static b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
+    bodyDef.position = sfToBoxVec(screenToWorld(pos));
     return &bodyDef;
 }
 
-const b2BodyDef* getDefaultStaticBodyDef()
+b2BodyDef* getDefaultStaticBodyDef(const sf::Vector2f& pos)
 {
-    static b2BodyDef bodyDef;
-    bodyDef.type = b2_staticBody;
-    return &bodyDef;
+    b2BodyDef *bodyDef = getDefaultDynamicBodyDef(pos);
+    bodyDef->type = b2_staticBody;
+    return bodyDef;
 }
 
 

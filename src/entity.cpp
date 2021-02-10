@@ -1,9 +1,16 @@
 #include "entity.h"
 #include "utils.h"
 
-Entity::Entity(b2World* world, const b2BodyDef* bodyDef, sf::Sprite* sprite) {
+Entity::Entity(b2World* world, const b2BodyDef* bodyDef, sf::Sprite* sprite, EntityType type) {
     _sprite = sprite;
     _body = world->CreateBody(bodyDef);
+    _body->GetUserData().pointer = reinterpret_cast<uintptr_t>(this);
+    _type = type;
+}
+
+EntityType Entity::getType()
+{
+    return _type;
 }
 
 void Entity::draw(sf::RenderTexture& texture, sf::RenderWindow& window) const {

@@ -4,10 +4,10 @@
 
 
 
-Shape::Shape(b2World * world, sf::ConvexShape* convex) : Shape(world, getDefaultStaticBodyDef(), convex) {}
+Shape::Shape(b2World * world, sf::Shape* convex, const sf::Vector2f& position) : Shape(world, getDefaultStaticBodyDef(position), convex) {}
 
 
-Shape::Shape(b2World * world, const b2BodyDef* bodyDef, sf::ConvexShape* convex) : Entity(world, bodyDef, nullptr) {
+Shape::Shape(b2World * world, const b2BodyDef* bodyDef, sf::Shape* convex) : Entity(world, bodyDef, nullptr) {
     _convex = convex;
 
    std::vector<b2Vec2> points; 
@@ -28,7 +28,7 @@ Shape::Shape(b2World * world, const b2BodyDef* bodyDef, sf::ConvexShape* convex)
 }
 
 Shape::~Shape() {
-
+    delete _convex;
 }
 
 void Shape::update(sf::Time elapsed) {
@@ -36,10 +36,10 @@ void Shape::update(sf::Time elapsed) {
 }
 
 void Shape::draw(sf::RenderTexture& texture, sf::RenderWindow& window) const {
-    _convex->setPosition(boxToSfVec(_body->GetPosition()));
+    _convex->setPosition(worldToScreen(boxToSfVec(_body->GetPosition())));
     texture.draw(*_convex);
 }
 
-sf::ConvexShape* Shape::getConvex() {
+sf::Shape* Shape::getConvex() {
     return _convex;
 }

@@ -33,7 +33,7 @@ void Reader::construct_and_add_shape(Environnement* env, std::string file) {
 
 }
 
-std::vector<sf::ConvexShape*> Reader::getShapes() {
+std::vector<sf::Shape*> Reader::getShapes() {
     return _shapes;
 }
 

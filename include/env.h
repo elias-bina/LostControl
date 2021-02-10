@@ -9,6 +9,7 @@
 #include "entity.h"
 #include "player.h"
 #include "rail.h"
+#include "contact_listener.h"
 
 class Environnement{
     public:
@@ -20,6 +21,7 @@ class Environnement{
         b2World* getWorld();
     private:
         b2World * _world;
+        CustomEngineContactListener* _contactListener;
         std::vector<Entity*> _entities;
 
 

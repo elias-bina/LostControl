@@ -3,7 +3,10 @@
 #include "utils.h"
 
 Environnement::Environnement(): _entities(){
+    _contactListener = new CustomEngineContactListener();
+
     _world = new b2World(b2Vec2(0, -9.81));
+    _world->SetContactListener(_contactListener);
     Entity* p1 = new Player(_world, 0);
     Entity* p2 = new Player(_world, 1);
     _entities.push_back(p1);
@@ -12,12 +15,8 @@ Environnement::Environnement(): _entities(){
     //TODO: bouger ces variables dans un module central 
     const int SCREEN_W = 800, SCREEN_H = 600, GROUND_W = SCREEN_W * 2, GROUND_H = 10;
 
-    b2BodyDef ground;
-    ground.position.Set(SCREEN_W / 2 * METERS_PER_PIXELS, (-SCREEN_H + GROUND_H) * METERS_PER_PIXELS);
-    b2Body * groundBody = _world->CreateBody(&ground);
-    b2PolygonShape groundBox;
-    groundBox.SetAsBox(GROUND_W / 2 * METERS_PER_PIXELS, GROUND_H / 2 * METERS_PER_PIXELS);
-    groundBody->CreateFixture(&groundBox, 0.0f);
+    sf::Shape * shape = new sf::RectangleShape(sf::Vector2f(GROUND_W, GROUND_H));
+    add_entity(new Shape(_world, shape, sf::Vector2f(SCREEN_W / 2- GROUND_W / 2, SCREEN_H - GROUND_H)));
 }
 
 void Environnement::add_entity(Entity* entity){
@@ -39,6 +38,7 @@ b2World* Environnement::getWorld() {
 
 
 Environnement::~Environnement(){
+    delete _contactListener;
     delete _world;
     for_each(_entities.begin(), _entities.end(),[](Entity*e){delete e;});
 }
