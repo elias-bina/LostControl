@@ -1,18 +1,21 @@
 #include "utils.h"
 #include "keyboard_input.h"
+#include "Thor/Input.hpp"
 
 KeyboardInput::KeyboardInput(int player) : _player(player){
 
     std::ifstream infile(Path::getResource("bindings.conf", ResourceType::CONFIG));
 
-    int a, b, c, i=0;
-    while (infile >> a >> b >> c)
+    std::string left, right, action;
+    int i = 0;
+    while (infile >> left >> right >> action)
     {
         if(i == player){
-            _left_bind = (sf::Keyboard::Key)a;
-            _right_bind = (sf::Keyboard::Key)b;
-            _action_bind = (sf::Keyboard::Key)c;
-            std::cout << "Bindings for player " << i << " : " << a << ", " << b << " and " << c <<std::endl;
+
+            _left_bind = thor::toKeyboardKey(left);
+            _right_bind = thor::toKeyboardKey(right);
+            _action_bind = thor::toKeyboardKey(action);
+            std::cout << "Bindings for player " << i << " : " << left << ", " << right << " and " << action <<std::endl;
             break;
         }
         i++;
