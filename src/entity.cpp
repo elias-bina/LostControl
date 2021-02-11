@@ -13,9 +13,19 @@ EntityType Entity::getType()
     return _type;
 }
 
+const sf::Vector2f& Entity::getScreenPosition() const
+{
+    return worldToScreen(boxToSfVec(getWorldPosition()));
+}
+
+const b2Vec2& Entity::getWorldPosition() const
+{
+    return _body->GetPosition();
+}
+
+
 void Entity::draw(sf::RenderTexture& texture, sf::RenderWindow& window) const {
-    sf::Vector2f screenPos = worldToScreen(boxToSfVec(_body->GetPosition()));
-    _sprite->setPosition(screenPos - toFloatVec(_sprite->getTexture()->getSize()) / 2.0f);
+    _sprite->setPosition(getScreenPosition() - toFloatVec(_sprite->getTexture()->getSize()) / 2.0f);
 
    // std::cout << "Pos : " << _body->GetPosition().x << ";" << _body->GetPosition().y << std::endl;
     //std::cout << "Screen pos : " <<screenPos.x << ";" << screenPos.y << std::endl;

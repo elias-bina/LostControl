@@ -36,7 +36,7 @@ void Shape::update(sf::Time elapsed) {
 }
 
 void Shape::draw(sf::RenderTexture& texture, sf::RenderWindow& window) const {
-    _convex->setPosition(worldToScreen(boxToSfVec(_body->GetPosition())));
+    _convex->setPosition(getScreenPosition());
     texture.draw(*_convex);
 }
 

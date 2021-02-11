@@ -19,10 +19,16 @@ public:
     virtual void startContact(Entity* other, const b2Vec2& normal);
     virtual void endContact(Entity* other, const b2Vec2& normal);
 
+    virtual void draw(sf::RenderTexture& texture, sf::RenderWindow& fenetre) const;
+
+
 private:
     Input* _controller;
     static b2BodyDef* bodyDef;
     sf::Clock _jumpClock;
+    sf::Clock _actionClock;
+    sf::Vector2f _jumpDir;
+
     std::set<Entity*> _jumpingPlatforms;
 
     static const b2BodyDef* getBodyDef();

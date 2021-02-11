@@ -20,6 +20,9 @@ class Entity{
         virtual void startContact(Entity* other, const b2Vec2& normal) {};
         virtual void endContact(Entity* other, const b2Vec2& normal) {};
 
+        virtual const sf::Vector2f& getScreenPosition() const;
+        virtual const b2Vec2& getWorldPosition() const;
+
         EntityType getType();
 
         virtual ~Entity(){};
