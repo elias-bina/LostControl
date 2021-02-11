@@ -4,7 +4,7 @@ mkdir -p deps
 cd deps
 
 echo "Installing box2d"
-if ! git clone https://github.com/erincatto/box2d.git
+if ! [ -d box2d ] && ! git clone https://github.com/erincatto/box2d.git
 then
     echo "Cannot download Box2D"
     exit 1
@@ -25,13 +25,14 @@ then
 fi
 
 echo "Installing Thor"
-if ! git clone https://github.com/Bromeon/Thor.git
+if ! [ -d Thor ] && ! git clone https://github.com/Bromeon/Thor.git
 then
     echo "Cannot download Thor"
     exit 1
 fi
 
 cd Thor
+git checkout v2.0
 mkdir -p build
 cd build
 

@@ -18,19 +18,15 @@ include_directories(include)
 # Crée des variables avec les fichiers à compiler
 AUX_SOURCE_DIRECTORY(src SRCS)
 
-
-
 set(TARGET main)
 # On indique que l'on veut un exécutable "main" compilé à partir des fichiers décrits par les variables SRCS et HEADERS
 add_executable(${TARGET} ${SRCS})
 
 
-# Ajoute BOX2d
+# On s'assure que box2d est la
 find_package(box2d REQUIRED)
-target_link_libraries(${TARGET} box2d)
 
-# Ajoute Thor
-target_link_libraries(${TARGET} thor)
+# Ajoute box2d, SFML et Thor
+target_link_libraries(${TARGET} box2d sfml-graphics sfml-system sfml-window thor)
 
-# Ajoute SFML
-target_link_libraries(${TARGET} sfml-graphics sfml-window sfml-system)
+
