@@ -5,8 +5,8 @@ build/*
 settings.ini
 imgui.ini
 
-# Box2d dir (if you want to keep it to use the testbed)
-box2d
+# Dependencies dir (if you want to keep it to use the testbed)
+deps
 
 # Prerequisites
 *.d

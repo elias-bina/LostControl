@@ -29,5 +29,8 @@ add_executable(${TARGET} ${SRCS})
 find_package(box2d REQUIRED)
 target_link_libraries(${TARGET} box2d)
 
+# Ajoute Thor
+target_link_libraries(${TARGET} thor)
+
 # Ajoute SFML
 target_link_libraries(${TARGET} sfml-graphics sfml-window sfml-system)
